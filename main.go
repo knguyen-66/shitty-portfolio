@@ -15,14 +15,13 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/joho/godotenv"
 
-	"shitty-portfolio/internal/handlers"
+	"shitty-portfolio/internal/routes"
 )
 
 func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Fatal(err)
 	}
-	listenAddr := ":3000"
 
 	r := chi.NewRouter()
 	// A good base middleware stack
@@ -31,11 +30,10 @@ func main() {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
-	r.Handle("/static/*", http.StripPrefix("/static", http.FileServer(http.Dir("./internal/static"))))
-	r.Get("/", handlers.Make(handlers.HandleHello))
+	routes.LoadRouterPaths(r)
 
 	server := &http.Server{
-		Addr:    listenAddr,
+		Addr:    ":" + os.Getenv("APP_PORT"),
 		Handler: r,
 	}
 
@@ -43,7 +41,7 @@ func main() {
 	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
 
 	go func() {
-		slog.Info("Server started at", "listenAddr", " localhost"+listenAddr)
+		slog.Info("Server started at", "listenAddr", "localhost"+server.Addr)
 		err := server.ListenAndServe()
 
 		if errors.Is(err, http.ErrServerClosed) {

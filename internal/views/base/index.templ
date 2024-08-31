@@ -2,7 +2,7 @@ package base
 
 templ Index() {
 	<!DOCTYPE html>
-	<html lang="en" class="">
+	<html lang="en" class="dark">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -10,12 +10,18 @@ templ Index() {
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 			<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
 			<link href="/static/css/styles.css" rel="stylesheet"/>
-			<script src="/static/script/htmx.min.js"></script>
+			<script src="/static/script/htmx.js"></script>
+			// for now, change to htmx.min.js later
+			<script>
+				if (localStorage.getItem('dark-mode') === 'true' || (!('dark-mode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+					document.querySelector('html').classList.add('dark');
+				} else {
+					document.querySelector('html').classList.remove('dark');
+				}
+			</script>
 		</head>
 		<body>
-			<div class="flex flex-row bg-surface">
-				{ children... }
-			</div>
+			{ children... }
 		</body>
 	</html>
 }

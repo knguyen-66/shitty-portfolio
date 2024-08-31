@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/a-h/templ"
+	"shitty-portfolio/internal/views"
 )
 
 type HTTPHandler func(w http.ResponseWriter, r *http.Request) error
@@ -19,4 +20,8 @@ func Make(h HTTPHandler) http.HandlerFunc {
 
 func Render(w http.ResponseWriter, r *http.Request, t templ.Component) error {
 	return t.Render(r.Context(), w)
+}
+
+func RenderWithDefaultLayout(w http.ResponseWriter, r *http.Request, t templ.Component) error {
+	return views.DEFAULT_LAYOUT(t).Render(r.Context(), w)
 }

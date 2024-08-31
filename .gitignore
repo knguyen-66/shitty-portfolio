@@ -1,4 +1,4 @@
-views/**/*.go
+internal/views/**/*templ.go
 
 .tmp
 tailwindcss

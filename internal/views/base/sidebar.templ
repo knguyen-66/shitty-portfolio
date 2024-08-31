@@ -1,43 +1,81 @@
 package base
 
 templ Sidebar() {
-	<div class="w-[15rem] flex-none flex h-screen flex-col justify-between border-r-2 border-primary">
+	<div class="w-[15rem] flex-none flex flex-col justify-between border-r border-primary">
 		<div class="px-4 py-6">
 			<span class="grid h-10 w-32 place-content-center rounded-lg bg-surface-1 hover:bg-surface-2 text-primary text-xs">
 				Logo
 			</span>
 			<ul class="mt-6 space-y-1">
+				// <li>
+				// 	<a href="/" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
+				// 		Home
+				// 	</a>
+				// </li>
+				// <li>
+				// 	<a href="/blogs" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
+				// 		Blogs
+				// 	</a>
+				// </li>
+				// <li>
+				// 	<a href="/work-archive" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
+				// 		Work Archive
+				// 	</a>
+				// </li>
+				// <span class="w-full flex items-center py-4 px-6">
+				// 	<span class="w-full h-px bg-stone-500"></span>
+				// </span>
 				<li>
-					<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
+					<a hx-get="/templates/home" hx-trigger="click" hx-target="#content-zone" hx-swap="innerHTML" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
 						Home
 					</a>
 				</li>
 				<li>
-					<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
+					<a hx-get="/templates/blogs" hx-trigger="click" hx-target="#content-zone" hx-swap="innerHTML" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
 						Blogs
 					</a>
 				</li>
 				<li>
-					<a href="#" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
-						Work Archives
+					<a hx-get="/templates/work-archive" hx-trigger="click" hx-target="#content-zone" hx-swap="innerHTML" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
+						Work Archive
 					</a>
 				</li>
 			</ul>
 		</div>
-		<div class="sticky inset-x-0 bottom-0 border-t-2 border-secondary">
-			<a href="#" class="flex items-center gap-2 bg-surface hover:bg-surface-2 p-4">
-				<img
-					alt=""
-					src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png"
-					class="size-10 rounded-full object-cover"
-				/>
-				<div>
-					<p class="text-xs">
-						<strong class="block font-medium text-primary">Khanh Nguyen</strong>
-						<span class="text-secondary">fake@email.com </span>
-					</p>
-				</div>
+		<div class="flex items-center inset-x-0 bottom-0 border-t border-primary">
+			<a href="#" class="w-full h-full flex flex-row items-center hover:bg-surface-2">
+				<p class="text-xs ml-4">
+					<strong class="block font-medium text-primary">Khanh Nguyen</strong>
+					<span class="text-secondary">fake@email.com </span>
+				</p>
 			</a>
+			<div class="flex flex-col h-full justify-center hover:bg-surface-1 pointer-events-auto">
+				<input type="checkbox" id="light-switch" class="sr-only"/>
+				<label class="relative cursor-pointer p-3" for="light-switch">
+					<svg xmlns="http://www.w3.org/2000/svg" class="dark:hidden h-[26px] w-[26px] size-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+						<path class="fill-slate-700" stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path>
+					</svg>
+					<svg class="hidden dark:block h-[26px] w-[26px]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path class="fill-slate-300" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"></path>
+					</svg>
+					<span class="sr-only">Dark mode / light mode</span>
+				</label>
+			</div>
 		</div>
 	</div>
+	<script>
+		const lightSwitch = document.querySelector('#light-switch');
+		if (localStorage.getItem('dark-mode') === 'true') {
+			lightSwitch.checked = true;
+		}
+		lightSwitch.addEventListener('change', () => {
+			if (lightSwitch.checked) {
+				document.documentElement.classList.add('dark');
+				localStorage.setItem('dark-mode', true);
+			} else {
+				document.documentElement.classList.remove('dark');
+				localStorage.setItem('dark-mode', false);
+			}
+		});
+	</script>
 }

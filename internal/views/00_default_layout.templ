@@ -1,0 +1,14 @@
+package views
+
+import "shitty-portfolio/internal/views/base"
+
+templ DEFAULT_LAYOUT(contents templ.Component) {
+	@base.Index() {
+		<div class="flex flex-row bg-surface relative h-screen overflow-hidden">
+			@base.Sidebar()
+			<div id="content-zone" class="overflow-y-auto">
+				@contents
+			</div>
+		</div>
+	}
+}
