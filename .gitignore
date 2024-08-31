@@ -1,3 +1,5 @@
+views/**/*.go
+
 .tmp
 tailwindcss
 tailwindcss-linux-x64
