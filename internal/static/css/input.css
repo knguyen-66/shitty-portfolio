@@ -19,6 +19,9 @@
 		--background-color-800: 41 37 36;
 		--background-color-900: 28 25 23;
 		--background-color-950: 12 10 9;
+
+		--hyperlink-color: 194 65 12
+			/* text-orange-700 */
 	}
 
 	.dark {
@@ -34,5 +37,7 @@
 		--background-color-900: 245 245 244;
 		--background-color-950: 250 250 249;
 
+		--hyperlink-color: 217 119 6
+			/* text-amber-600 */
 	}
 }

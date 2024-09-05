@@ -18,6 +18,7 @@ module.exports = {
       textColor: {
         primary: "rgb(var(--background-color-900) / <alpha-value>)",
         secondary: "rgb(var(--background-color-700) / <alpha-value>)",
+        hyperlink: "rgb(var(--hyperlink-color) / <alpha-value>)",
       },
       backgroundColor: {
         "surface": "rgb(var(--background-color-100) / <alpha-value>)",

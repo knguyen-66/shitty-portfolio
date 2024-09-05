@@ -1,30 +1,66 @@
 package views
 
 templ Home() {
-	<div class="flex flex-row px-10 py-5 gap-5">
-		<div class="flex-1 text-left flex flex-col justify-start items-start gap-2">
-			<p class="mt-3 text-6xl text-primary font-extrabold">ItsKhanh</p>
-			<p class="text-base italic text-primary">knguyen-66</p>
-			<p class="mt-3 text-base text-secondary">Backend, DevOps, AI and chasing trends</p>
-			<!-- <div class="mt-3">
-						<a href="#" class="inline-flex items-center rounded border px-8 py-3 bg-indigo-500 text-white">
-							<span class="text-sm font-medium">Learn more</span>
-						</a>
-						<a href="#" class="inline-flex items-center rounded border px-8 py-3">
-							<span class="text-sm font-medium">Learn more</span>
-						</a>
-					</div> -->
-			<span class="w-full flex items-center my-3">
-				<span class="h-px flex-1 bg-stone-500"></span>
-				<span class="px-6 text-sm text-secondary">This is not me, apparently --> </span>
-			</span>
-			<p class="mt-3 text-base text-primary"></p>
-		</div>
-		<div class="flex-1 my-4">
-			<img
-				class="w-full object-cover"
-				src="https://images.unsplash.com/photo-1724269964916-0b4e11542083?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-			/>
+	<div class="px-10 py-5">
+		<div class="grid grid-cols-1 gap-4 lg:grid-cols-5 lg:gap-8">
+			<div class="h-full rounded-lg lg:col-span-3">
+				<p class="mt-3 text-6xl text-primary font-extrabold">ItsKhanh</p>
+				<p class="text-lg italic font-bold text-secondary">knguyen-66</p>
+				<p class="mt-3 text-base text-primary">Backend, DevOps, AI and chasing trends</p>
+				<span class="w-full flex items-center my-3">
+					<span class="h-px flex-1 bg-stone-500"></span>
+					<span class="px-6 text-sm text-secondary">These are not my photos, for now --> </span>
+				</span>
+				<p class="mt-3 text-lg font-bold text-primary list-disc">Who I am</p>
+				<p class="mt-3 text-base text-primary">I'm Khanh, a DevOps / Backend Engineer. Currently located in Vietnam.</p>
+				<p class="text-base text-primary">I studied in <a target="_blank" rel="noopener noreferrer" class="text-hyperlink underline" href="https://uit.edu.vn">University of Information Technology - UIT</a> and had a Software Engineer bachelor.</p>
+				<p class="text-base text-primary">Love coding. Hate writing long documentation. So I wrote this page. To feel less hatred to it.</p>
+				<p class="text-base text-primary">
+					I'm trying to find ideas for my own SaaS (or applications, whatever works). 
+					Not really have the time to work on it though. If you are reading this line, the blogs are not even done yet ¯\_(ツ)_/¯
+				</p>
+				<p class="text-base text-primary">Currently working at <a target="_blank" rel="noopener noreferrer" class="text-hyperlink underline" href="https://amperecomputing.com">Ampere Computing</a> as an intern. <span class="italic">Not for long. I mean as an intern.</span></p>
+				<p class="mt-5 text-lg font-bold text-primary list-disc">What's on here</p>
+				<p class="mt-3 text-base text-primary">
+					Not much. I'm trying to take a look at my projects, find something useful and maybe share about it in the form of blogs.
+					Might be old ones, might be progress of new ones, might just be some helpful things.
+				</p>
+				<p class="text-base text-primary">I'll try to host whatever thing I can and link it to this page for easy access.</p>
+				<p class="text-base text-primary">And add some corners for my hobbies too. No one might see it, but it doesn't really matter :D</p>
+				<p class="mt-5 text-lg font-bold text-primary list-disc">How to reach me</p>
+				<p class="mt-3 text-base text-primary">
+					My email is at the bottom of the sidebar. Click on that for more platforms &#40;or <a class="text-hyperlink underline" href="#">here</a>
+					{ "if" } you are lazy&#41;, including Github and whatever things you may need.
+				</p>
+				<p class="text-base text-primary">I check my email daily, and notification existed; so hopefully I can reply you fast enough.</p>
+				<div class="flex flex-row gap-2">
+					<p class="text-base text-primary">For <span class="font-bold">my (future) employer</span>, consider this my résume. Thank you &lt;3</p>
+				</div>
+			</div>
+			<div class="h-full rounded-lg lg:col-span-2">
+				<div class="flex flex-col gap-4">
+					<img
+						class="w-full object-cover"
+						loading="lazy"
+						src="https://images.unsplash.com/photo-1724269964916-0b4e11542083?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+					/>
+					<img
+						class="w-full object-cover"
+						loading="lazy"
+						src="https://images.unsplash.com/photo-1724269964916-0b4e11542083?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+					/>
+					<img
+						class="w-full object-cover"
+						loading="lazy"
+						src="https://images.unsplash.com/photo-1724269964916-0b4e11542083?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+					/>
+					<img
+						class="w-full object-cover"
+						loading="lazy"
+						src="https://images.unsplash.com/photo-1724269964916-0b4e11542083?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+					/>
+				</div>
+			</div>
 		</div>
 	</div>
 }
