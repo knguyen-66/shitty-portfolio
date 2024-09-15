@@ -39,11 +39,11 @@ module.exports = {
       },
     },
     // for prose class, applied to blog markdowns
+    // theme call must put inside "": https://github.com/tailwindlabs/tailwindcss/issues/9143#issuecomment-1849773132
     typography: (theme) => ({
       DEFAULT: {
-        // https://github.com/tailwindlabs/tailwindcss/issues/9143#issuecomment-1849773132
         css: {
-          color: "theme('backgroundColor.primary')",
+          color: "theme('backgroundColor.surface')",
           h1: {
             fontSize: "theme('fontSize.3xl')",
             fontWeight: "theme('fontWeight.bold')",
@@ -91,14 +91,14 @@ module.exports = {
             justifyContent: 'center',
           },
           figcaption: {
+            fontSize: "theme('fontSize.sm')",
             textAlign: 'center',
             fontStyle: 'italic',
-            fontSize: "theme('fontSize.sm')",
           },
           img: {
+            boxShadow: "theme('boxShadow.lg')",
             marginLeft: 'auto',
             marginRight: 'auto',
-            boxShadow: "theme('boxShadow.lg')",
           },
         },
       },

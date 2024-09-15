@@ -2,7 +2,8 @@ internal/views/**/*templ.go
 
 .tmp
 .prod
-static/script/*
+internal/static/css/styles*.css
+internal/static/script/*
 tailwindcss
 
 

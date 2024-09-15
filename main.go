@@ -19,7 +19,7 @@ import (
 
 func main() {
 	if err := godotenv.Load(); err != nil {
-		slog.Error("environment loading error:", err)
+		slog.Error("environment loading error:", "err", err)
 	}
 
 	r := chi.NewRouter()
