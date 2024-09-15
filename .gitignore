@@ -1,8 +1,10 @@
 internal/views/**/*templ.go
 
 .tmp
+.prod
+static/script/*
 tailwindcss
-tailwindcss-linux-x64
+
 
 # ========
 

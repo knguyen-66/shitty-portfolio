@@ -5,6 +5,7 @@ tailwind-watch:
 
 .PHONY: tailwind-build
 tailwind-build:
+	./tailwindcss -i ./internal/static/css/input.css -o ./internal/static/css/styles.css
 	./tailwindcss -i ./internal/static/css/input.css -o ./internal/static/css/styles.min.css --minify
 
 .PHONY: templ-generate
@@ -24,3 +25,14 @@ prepare:
 dev:
 	make templ-generate
 	air
+
+.PHONY: build-prod
+build-prod:
+	make prepare
+	make tailwind-build
+	make templ-generate
+	go build -o .prod/main .
+
+.PHONY: prod
+build:
+	.prod/main
