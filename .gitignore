@@ -4,6 +4,7 @@ internal/views/**/*templ.go
 .prod
 internal/static/css/styles*.css
 internal/static/script/*
+!internal/static/script/.gitkeep
 tailwindcss
 
 
