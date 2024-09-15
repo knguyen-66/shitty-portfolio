@@ -1,6 +1,6 @@
 package base
 
-templ Index() {
+templ Index(prod bool) {
 	<!DOCTYPE html>
 	<html lang="en" class="dark">
 		<head>
@@ -9,7 +9,11 @@ templ Index() {
 			<link rel="preconnect" href="https://fonts.googleapis.com"/>
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 			<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
-			<link href="/static/css/styles.css" rel="stylesheet"/>
+			if prod {
+				<link href="/static/css/styles.min.css" rel="stylesheet"/>
+			} else {
+				<link href="/static/css/styles.css" rel="stylesheet"/>
+			}
 			<script src="/static/script/htmx-2_0_2.min.js"></script>
 			<script src="/static/script/alpinejs-3_14_1.min.js"></script>
 			// for now, change to htmx.min.js later

@@ -31,8 +31,8 @@ build-prod:
 	make prepare
 	make tailwind-build
 	make templ-generate
-	go build -o .prod/main .
 
 .PHONY: prod
-build:
-	.prod/main
+prod:
+	go build -o .prod/main .
+	.prod/main -prod=true

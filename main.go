@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
 	"log/slog"
 	"net/http"
 	"os"
@@ -12,15 +13,24 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 
 	"shitty-portfolio/internal/routes"
 )
 
 func main() {
-	if err := godotenv.Load(); err != nil {
-		slog.Error("environment loading error:", "err", err)
+	os.Setenv("APP_PORT", "3000")
+	flagProd := flag.Bool("prod", false, "production state, default: false")
+	flag.Parse()
+	if *flagProd {
+		os.Setenv("APP_PROD", "true")
+	} else {
+		os.Setenv("APP_PROD", "false")
 	}
+
+	// if err := godotenv.Load(envFilename); err != nil {
+	// 	slog.Error("environment loading error:", "err", err)
+	// }
 
 	r := chi.NewRouter()
 	// A good base middleware stack
@@ -40,7 +50,7 @@ func main() {
 	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
 
 	go func() {
-		slog.Info("Server started at", "listenAddr", "localhost"+server.Addr)
+		slog.Info("Server started at", "listenAddr", "localhost"+server.Addr, "prod", *flagProd)
 		err := server.ListenAndServe()
 
 		if errors.Is(err, http.ErrServerClosed) {
