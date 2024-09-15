@@ -15,7 +15,7 @@ func LoadRouterPaths(r *chi.Mux) {
 	r.Get("/blogs", handlers.Make(handlers.HandleBlogsPage))
 	r.Get("/work-archive", handlers.Make(handlers.HandleWorkArchivePage))
 
-	// page templates, for HTMX
+	// page templates for HTMX
 	r.Route("/templates", func(r chi.Router) {
 		r.Get("/home", handlers.Make(handlers.HandleHomeTemplate))
 		r.Get("/blogs", handlers.Make(handlers.HandleBlogsTemplate))

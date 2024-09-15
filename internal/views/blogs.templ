@@ -1,7 +1,12 @@
 package views
 
-templ Blogs() {
+templ Blogs(currentPost string) {
 	<div class="px-10 py-5">
-		<p class="mt-3 text-6xl text-primary font-extrabold">Blogs</p>
+		// <p class="mt-3 text-6xl font-extrabold">Blogs</p>
+		<div class="container">
+			<div class="w-full prose">
+				@templ.Raw(currentPost)
+			</div>
+		</div>
 	</div>
 }
