@@ -6,7 +6,7 @@ templ DEFAULT_LAYOUT(contents templ.Component, prod bool) {
 	@base.Index(prod) {
 		<div class="flex flex-row relative h-screen overflow-hidden">
 			@base.Sidebar()
-			<div id="content-zone" class="overflow-y-auto w-full">
+			<div id="content-zone" class="overflow-y-auto w-full px-10 py-7">
 				@contents
 			</div>
 		</div>
