@@ -16,7 +16,6 @@ templ Index(prod bool) {
 			}
 			<script src="/static/script/htmx-2_0_2.min.js"></script>
 			<script src="/static/script/alpinejs-3_14_1.min.js"></script>
-			// for now, change to htmx.min.js later
 			<script>
 				if (localStorage.getItem('dark-mode') === 'true' || (!('dark-mode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
 					document.querySelector('html').classList.add('dark');

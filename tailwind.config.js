@@ -24,18 +24,31 @@ module.exports = {
       textColor: {
         "primary": "rgb(var(--background-color-900) / <alpha-value>)",
         "secondary": "rgb(var(--background-color-700) / <alpha-value>)",
-        "hyperlink": "rgb(var(--hyperlink-color) / <alpha-value>)",
+        "hyperlink": "rgb(var(--obj-primary-color) / <alpha-value>)",
       },
       backgroundColor: {
+        "surface-0": "rgb(var(--background-color-50) / <alpha-value>)",
         "surface": "rgb(var(--background-color-100) / <alpha-value>)",
         "surface-1": "rgb(var(--background-color-200) / <alpha-value>)",
         "surface-2": "rgb(var(--background-color-300) / <alpha-value>)",
         "surface-3": "rgb(var(--background-color-400) / <alpha-value>)",
         "surface-4": "rgb(var(--background-color-500) / <alpha-value>)",
+
+        "obj-primary": "rgb(var(--obj-primary-color) / <alpha-value>)",
+        "obj-secondary": "rgb(var(--obj-secondary-color) / <alpha-value>)",
+        "obj-success": "rgb(var(--obj-success-color) / <alpha-value>)",
+        "obj-warning": "rgb(var(--obj-warning-color) / <alpha-value>)",
+        "obj-error": "rgb(var(--obj-error-color) / <alpha-value>)",
       },
       borderColor: {
         "primary": "rgb(var(--background-color-400) / <alpha-value>)",
         "secondary": "rgb(var(--background-color-300) / <alpha-value>)",
+
+        "obj-primary": "rgb(var(--obj-primary-color) / <alpha-value>)",
+        "obj-secondary": "rgb(var(--obj-secondary-color) / <alpha-value>)",
+        "obj-success": "rgb(var(--obj-success-color) / <alpha-value>)",
+        "obj-warning": "rgb(var(--obj-warning-color) / <alpha-value>)",
+        "obj-error": "rgb(var(--obj-error-color) / <alpha-value>)",
       },
     },
     // for prose class, applied to blog markdowns
@@ -43,7 +56,7 @@ module.exports = {
     typography: (theme) => ({
       DEFAULT: {
         css: {
-          color: "theme('backgroundColor.surface')",
+          color: "theme('textColor.primary')",
           h1: {
             fontSize: "theme('fontSize.3xl')",
             fontWeight: "theme('fontWeight.bold')",

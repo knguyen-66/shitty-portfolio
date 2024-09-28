@@ -18,14 +18,23 @@
 		--background-color-700: 68 64 60;
 		--background-color-800: 41 37 36;
 		--background-color-900: 28 25 23;
-		--background-color-950: 12 10 9;
+		--background-color-950: 20 18 17;
 
-		--hyperlink-color: 194 65 12
-			/* text-orange-700 */
+		--obj-primary-color: 194 65 12;
+		/* text-orange-700 */
+		--obj-secondary-color: 87 83 78;
+		/* text-stone-600 */
+		--obj-success-color: 34 197 94;
+		/* text-green-500 */
+		--obj-warning-color: 234 179 8;
+		/* text-yellow-500 */
+		--obj-error-color: 185 28 28;
+		/* text-red-700 */
+
 	}
 
 	.dark {
-		--background-color-50: 12 10 9;
+		--background-color-50: 20 18 17;
 		--background-color-100: 28 25 23;
 		--background-color-200: 41 37 36;
 		--background-color-300: 68 64 60;
@@ -37,7 +46,15 @@
 		--background-color-900: 245 245 244;
 		--background-color-950: 250 250 249;
 
-		--hyperlink-color: 217 119 6
-			/* text-amber-600 */
+		--obj-primary-color: 217 119 6;
+		/* text-amber-600 */
+		--obj-secondary-color: 168 162 158;
+		/* text-stone-400 */
+		--obj-success-color: 22 163 74;
+		/* text-green-600 */
+		--obj-warning-color: 234 179 8;
+		/* text-yellow-500 */
+		--obj-error-color: 190 18 60;
+		/* text-rose-700 */
 	}
 }
