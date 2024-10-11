@@ -13,8 +13,10 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+
 	// "github.com/joho/godotenv"
 
+	"shitty-portfolio/data"
 	"shitty-portfolio/internal/routes"
 )
 
@@ -31,6 +33,13 @@ func main() {
 	// if err := godotenv.Load(envFilename); err != nil {
 	// 	slog.Error("environment loading error:", "err", err)
 	// }
+
+	err := data.InitDatabase()
+	if err != nil {
+		slog.Error("database initialization error:", "err", err)
+		os.Exit(1)
+	}
+	defer data.CloseDatabase()
 
 	r := chi.NewRouter()
 	// A good base middleware stack
@@ -50,7 +59,7 @@ func main() {
 	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
 
 	go func() {
-		slog.Info("Server started at", "listenAddr", "localhost"+server.Addr, "prod", *flagProd)
+		slog.Info("Server started at", "listenAddress", "localhost"+server.Addr, "prod", *flagProd)
 		err := server.ListenAndServe()
 
 		if errors.Is(err, http.ErrServerClosed) {
