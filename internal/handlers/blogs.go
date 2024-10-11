@@ -1,47 +1,44 @@
 package handlers
 
 import (
-	"bytes"
+	"context"
 	"fmt"
 	"net/http"
-	"os"
-	"regexp"
+	"shitty-portfolio/data"
 	"shitty-portfolio/internal/views"
 
-	figure "github.com/mangoumbrella/goldmark-figure"
-	"github.com/yuin/goldmark"
-	meta "github.com/yuin/goldmark-meta"
-	"github.com/yuin/goldmark/extension"
-	// "github.com/yuin/goldmark/renderer/html"
+	"github.com/a-h/templ"
 )
 
-var markdownConverter goldmark.Markdown = goldmark.New(
-	goldmark.WithExtensions(extension.GFM, figure.Figure, meta.Meta),
-	// goldmark.WithRendererOptions(html.WithUnsafe()),
-)
+func _handleBlogs() (templ.Component, error) {
+	queries := data.New(data.DB)
+	ctx := context.Background()
+	blogs, err := queries.SelectBlogs(ctx)
 
-func renderBlogPost(filename string) (string, error) {
-	source, err := os.ReadFile("internal/data/blogs/" + filename)
-	if err != nil {
-		return "", err
+	blogTagMap := make(map[int64][]data.BlogTag)
+	for _, blog := range blogs {
+		blogTags, err := queries.SelectBlogTagsByBlog(ctx, blog.ID)
+		if err != nil {
+			blogTagMap[blog.ID] = []data.BlogTag{}
+			continue
+		}
+		blogTagMap[blog.ID] = blogTags
 	}
-	var buf bytes.Buffer
-	if err := markdownConverter.Convert(source, &buf); err != nil {
-		return "", err
-	}
-	re := regexp.MustCompile(`<img(.*)>`)
-	blogStr := re.ReplaceAllString(buf.String(), "<img loading='lazy'$1>")
-	return blogStr, nil
+	return views.Blogs(blogs, blogTagMap), err
 }
 
 func HandleBlogsPage(w http.ResponseWriter, r *http.Request) error {
-	testPost, err := renderBlogPost("01-building-a-kinda-high-performance-chat-application-with-python-and-golang.md")
+	viewTemplate, err := _handleBlogs()
 	if err != nil {
 		fmt.Println("Error happened: " + err.Error())
 	}
-	return RenderWithDefaultLayout(w, r, views.Blogs(testPost))
+	return RenderWithDefaultLayout(w, r, viewTemplate)
 }
 
 func HandleBlogsTemplate(w http.ResponseWriter, r *http.Request) error {
-	return Render(w, r, views.Blogs(""))
+	viewTemplate, err := _handleBlogs()
+	if err != nil {
+		fmt.Println("Error happened: " + err.Error())
+	}
+	return Render(w, r, viewTemplate)
 }

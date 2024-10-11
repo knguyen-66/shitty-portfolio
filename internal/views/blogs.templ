@@ -1,10 +1,17 @@
 package views
 
-templ Blogs(currentPost string) {
-	// <p class="mt-3 text-6xl font-extrabold">Blogs</p>
-	<div class="container">
-		<div class="w-full prose">
-			@templ.Raw(currentPost)
+import (
+	"shitty-portfolio/data"
+	"shitty-portfolio/internal/views/base"
+)
+
+templ Blogs(blogItems []data.Blog, blogTagMap map[int64][]data.BlogTag) {
+	<div>
+		<p class="mt-3 mb-5 text-4xl sm:text-5xl md:text-6xl text-primary font-extrabold">Blogs</p>
+		<div class="flex flex-col gap-5">
+			for _, blog := range blogItems {
+				@base.BlogCard(blog, blogTagMap[blog.ID])
+			}
 		</div>
 	</div>
 }

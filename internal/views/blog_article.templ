@@ -1,0 +1,19 @@
+package views
+
+import "shitty-portfolio/data"
+
+templ BlogArticle(blogItem data.Blog, blogTags []data.BlogTag, blogRawHTML string) {
+	<div class="container">
+		<div class="w-full prose">
+			<h1>{ blogItem.Title }</h1>
+			<p>{ blogItem.TimeCreated.Time.Format("January 2, 2006") }</p>
+			<p class="inline mr-1">Tags: </p>
+			<div class="inline-flex flex-row gap-1">
+				for _, tag := range blogTags {
+					<div class="inline bg-obj-secondary px-2 py-0.5 rounded-full text-xs font-bold">{ tag.TagName }</div>
+				}
+			</div>
+			@templ.Raw(blogRawHTML)
+		</div>
+	</div>
+}

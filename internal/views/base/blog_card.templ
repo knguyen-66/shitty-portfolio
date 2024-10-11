@@ -1,0 +1,62 @@
+package base
+
+import (
+	"shitty-portfolio/data"
+	"strconv"
+)
+
+templ BlogCard(blogItem data.Blog, blogTags []data.BlogTag) {
+	<article class="group flex bg-surface-1 hover:shadow-xl rounded-lg">
+		<div class="flex flex-1 flex-col justify-between">
+			<div class="p-4 sm:p-6">
+				<a
+					hx-get={ "/templates/blogs/" + blogItem.Slug }
+					hx-target="#content-zone"
+					hx-replace-url={ "/blogs/" + blogItem.Slug }
+				>
+					<h3 class="font-bold uppercase text-primary text-lg cursor-pointer hover:underline">
+						{ blogItem.Title }
+					</h3>
+				</a>
+				<p class="mt-2 line-clamp-3 text-sm/relaxed">
+					{ blogItem.Summary.String }
+				</p>
+				<p class="inline mt-2 mr-2 line-clamp-2 text-sm font-bold">
+					Tags: 
+				</p>
+				<div class="inline-flex flex-row flex-wrap gap-1">
+					for _, tag := range blogTags {
+						<div class="bg-obj-secondary px-2 py-0.5 rounded-full hover:bg-obj-secondary/70 text-xs font-bold">{ tag.TagName }</div>
+					}
+				</div>
+			</div>
+			<div class="sm:flex sm:items-start sm:justify-start">
+				<a
+					hx-get={ "/templates/blogs/" + blogItem.Slug }
+					hx-target="#content-zone"
+					hx-replace-url={ "/blogs/" + blogItem.Slug }
+					class="block bg-obj-primary px-7 py-3 text-center text-xs font-bold uppercase text-primary transition hover:bg-obj-primary/70 cursor-pointer"
+				>
+					READ BLOG
+				</a>
+			</div>
+		</div>
+		<div class="hidden sm:block sm:basis-56">
+			<img
+				loading="lazy"
+				alt=""
+				src="static/imgs/default-card-img.jpg"
+				class="aspect-square h-full w-full object-cover"
+			/>
+		</div>
+		<div class="border-r border-secondary rotate-180 p-2 [writing-mode:_vertical-lr] group-hover:bg-surface-2">
+			<div
+				class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-primary"
+			>
+				<span>{ strconv.Itoa(blogItem.TimeCreated.Time.Year()) }</span>
+				<span class="w-px flex-1 bg-surface-2 group-hover:bg-surface-3"></span>
+				<span>{ blogItem.TimeCreated.Time.Format("Jan 02") }</span>
+			</div>
+		</div>
+	</article>
+}
