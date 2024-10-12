@@ -22,9 +22,9 @@ module.exports = {
     },
     extend: {
       textColor: {
-        "primary": "rgb(var(--background-color-900) / <alpha-value>)",
-        "secondary": "rgb(var(--background-color-700) / <alpha-value>)",
-        "hyperlink": "rgb(var(--obj-primary-color) / <alpha-value>)",
+        "primary": "rgb(var(--background-color-800) / <alpha-value>)",
+        "secondary": "rgb(var(--background-color-600) / <alpha-value>)",
+        "hyperlink": "rgb(var(--obj-hyperlink-color) / <alpha-value>)",
       },
       backgroundColor: {
         "surface-0": "rgb(var(--background-color-50) / <alpha-value>)",
@@ -43,6 +43,7 @@ module.exports = {
       borderColor: {
         "primary": "rgb(var(--background-color-400) / <alpha-value>)",
         "secondary": "rgb(var(--background-color-300) / <alpha-value>)",
+        "third": "rgb(var(--background-color-200) / <alpha-value>)",
 
         "obj-primary": "rgb(var(--obj-primary-color) / <alpha-value>)",
         "obj-secondary": "rgb(var(--obj-secondary-color) / <alpha-value>)",
