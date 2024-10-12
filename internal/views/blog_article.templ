@@ -16,4 +16,10 @@ templ BlogArticle(blogItem data.Blog, blogTags []data.BlogTag, blogRawHTML strin
 			@templ.Raw(blogRawHTML)
 		</div>
 	</div>
+	// <script>hljs.highlightAll();</script>
+	<script>
+	document.querySelectorAll('code').forEach((block) => {
+    	hljs.highlightBlock(block);
+	});
+</script>
 }

@@ -7,7 +7,13 @@ import (
 	"shitty-portfolio/internal/handlers"
 )
 
+func handleFavicon(w http.ResponseWriter, r *http.Request) error {
+	http.ServeFile(w, r, "./internal/static/imgs/favicon.ico")
+	return nil
+}
+
 func LoadRouterPaths(r *chi.Mux) {
+	r.Handle("/favicon.ico", handlers.Make(handleFavicon))
 	r.Handle("/static/*", http.StripPrefix("/static", http.FileServer(http.Dir("./internal/static"))))
 
 	// full pages
