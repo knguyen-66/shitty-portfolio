@@ -10,7 +10,6 @@
 
 	:root,
 	.light {
-
 		/* stone palette modified */
 		--background-color-50: 240 236 235;
 		--background-color-100: 233 229 228;
@@ -23,8 +22,8 @@
 		--background-color-800: 43 38 37;
 		--background-color-900: 20 18 17;
 
-		--obj-primary-color: 251 146 60;
-		/* text-orange-500 */
+		--obj-primary-color: 232 131 49;
+		/* text-orange-500 modified */
 		--obj-secondary-color: 170 177 191;
 		/* text-gray-400 modified */
 		--obj-success-color: 34 197 94;

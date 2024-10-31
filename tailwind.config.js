@@ -11,12 +11,12 @@ module.exports = {
       center: true,
       padding: {
         'lg': '2.5rem',
-        'xl': '8rem',
-        '2xl': '15rem',
+        'xl': '6rem',
+        '2xl': '12rem',
       },
     },
     fontFamily: {
-      'sans': ['"Libre Franklin"', ...defaultTheme.fontFamily.sans],
+      'sans': ["Libre Franklin", ...defaultTheme.fontFamily.sans],
       'serif': [...defaultTheme.fontFamily.serif],
       'mono': [...defaultTheme.fontFamily.mono],
     },
@@ -67,24 +67,24 @@ module.exports = {
           h2: {
             fontSize: "theme('fontSize.2xl')",
             fontWeight: "theme('fontWeight.bold')",
-            paddingTop: '1.1rem',
-            paddingBottom: '0.9rem',
+            paddingTop: '1.5rem',
+            paddingBottom: '0.25rem',
           },
           h3: {
             fontSize: "theme('fontSize.xl')",
             fontWeight: "theme('fontWeight.bold')",
-            paddingTop: '0.8rem',
-            paddingBottom: '0.75rem',
+            paddingTop: '1rem',
+            paddingBottom: '0.25rem',
           },
           h4: {
             fontSize: "theme('fontSize.lg')",
             fontWeight: "theme('fontWeight.bold')",
-            paddingTop: '0.6rem',
-            paddingBottom: '0.5rem',
+            paddingTop: '0.5rem',
+            paddingBottom: '0.25rem',
           },
           p: {
-            marginTop: '0.35rem',
-            marginBottom: '0.35rem',
+            marginTop: '0.5rem',
+            marginBottom: '0.5rem',
           },
           a: {
             color: "theme('textColor.hyperlink')",
@@ -109,13 +109,13 @@ module.exports = {
             width: '100%',
             display: 'flex',
             flexDirection: 'column',
-            gap: '1rem',
+            gap: '0.75rem',
             paddingTop: '1.5rem',
             paddingBottom: '1.5rem',
-            justifyContent: 'center',
+            alignItems: 'center',
           },
           figcaption: {
-            fontSize: "theme('fontSize.sm')",
+            // fontSize: "theme('fontSize.sm')",
             textAlign: 'center',
             fontStyle: 'italic',
           },
@@ -126,7 +126,9 @@ module.exports = {
           },
           blockquote: {
             backgroundColor: 'theme("backgroundColor.surface-1")',
-            borderLeftWidth: '0.25rem',
+            borderTopWidth: '0.1rem',
+            borderLeftWidth: '0.3rem',
+            borderTopColor: 'theme("borderColor.secondary")',
             borderLeftColor: 'theme("backgroundColor.obj-primary")',
             paddingLeft: '1.5rem',
             marginTop: '1rem',
@@ -150,7 +152,7 @@ module.exports = {
             marginTop: "0.5rem",
             marginBottom: "0.5rem",
             padding: '0.25rem',
-            fontSize: '0.8rem',
+            fontSize: '0.9rem',
             lineHeight: '1.4',
             letterSpacing: '-0.01rem',
           },
@@ -200,9 +202,14 @@ module.exports = {
   plugins: [
     plugin(function ({ addBase, theme }) {
       addBase({
+        'html': {
+          fontSize: '16px',
+          fontWeight: '450',
+          lineHeight: 1.55,
+        },
         'p': {
-          marginTop: '0.35rem',
-          marginBottom: '0.35rem',
+          marginTop: '0.5rem',
+          marginBottom: '0.5rem',
         },
       })
     }),

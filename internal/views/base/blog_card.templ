@@ -6,7 +6,7 @@ import (
 )
 
 templ BlogCard(blogItem data.Blog, blogTags []data.BlogTag) {
-	<article class="group flex bg-surface-1 hover:shadow-xl rounded-lg">
+	<article class="group flex bg-surface-1 hover:shadow-lg rounded-xl">
 		<div class="flex flex-1 flex-col justify-between">
 			<div class="p-4 sm:p-6">
 				<a
@@ -45,11 +45,11 @@ templ BlogCard(blogItem data.Blog, blogTags []data.BlogTag) {
 			<img
 				loading="lazy"
 				alt=""
-				src="static/imgs/default-card-img.jpg"
+				src="/static/imgs/default-card-img.jpg"
 				class="aspect-square h-full w-full object-cover"
 			/>
 		</div>
-		<div class="border-r border-secondary rotate-180 p-2 [writing-mode:_vertical-lr] group-hover:bg-surface-2">
+		<div class="border-r border-secondary rotate-180 p-2 [writing-mode:_vertical-lr] rounded-l-xl group-hover:bg-surface-2">
 			<div
 				class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-primary"
 			>

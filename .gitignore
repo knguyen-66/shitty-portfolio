@@ -2,10 +2,12 @@ internal/views/**/*templ.go
 
 .tmp
 .prod
-internal/static/css/styles*.css
+internal/static/css/*
 internal/static/script/*
-!internal/static/script/.gitkeep
 tailwindcss
+
+!internal/static/css/input.css
+!internal/static/script/.gitkeep
 
 
 # ========

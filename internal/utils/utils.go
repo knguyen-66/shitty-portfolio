@@ -15,7 +15,7 @@ import (
 )
 
 var markdownConverter goldmark.Markdown = goldmark.New(
-	goldmark.WithExtensions(extension.GFM, figure.Figure, meta.Meta),
+	goldmark.WithExtensions(extension.GFM, figure.Figure.WithImageLink(), meta.Meta),
 	// goldmark.WithRendererOptions(html.WithUnsafe()),
 )
 
@@ -27,16 +27,12 @@ func CreateSlug(input string) string {
 		slog.Error("Error compiling regex: %v", "err", err.Error())
 	}
 	processedString := reg.ReplaceAllString(input, " ")
-
 	// Remove leading and trailing spaces
 	processedString = strings.TrimSpace(processedString)
-
 	// Replace spaces with dashes
 	slug := strings.ReplaceAll(processedString, " ", "-")
-
 	// Convert to lowercase
 	slug = strings.ToLower(slug)
-
 	return slug
 }
 
