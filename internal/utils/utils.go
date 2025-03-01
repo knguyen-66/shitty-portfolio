@@ -36,7 +36,7 @@ func CreateSlug(input string) string {
 	return slug
 }
 
-func ParseMarkdownBlogWithMetadata(filename string) (string, map[string]interface{}, error) {
+func ParseMarkdownBlog(filename string) (string, map[string]interface{}, error) {
 	source, err := os.ReadFile("data/blogs/" + filename)
 	if err != nil {
 		return "", nil, err

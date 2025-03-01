@@ -1,84 +1,57 @@
 package base
 
 templ Sidebar() {
-	<div x-data="{ open: window.innerWidth >= 768 }" @resize.window="if (window.innerWidth >= 768) open = true; else open = false;">
+	<div x-data @resize.window="if (window.innerWidth <= 768 && $store.state.sidebar) $store.state.toggleSidebar();">
 		<a
-			class="absolute left-4 top-6 z-50 inline-block bg-surface/50 rounded-full border border-primary p-3 text-secondary hover:bg-obj-primary focus:outline-none focus:ring active:bg-surface cursor-pointer"
-			@click="open = !open"
+			class="absolute left-4 top-6 z-50 inline-block bg-surface/50 rounded-full border border-primary p-2 text-secondary hover:bg-obj-primary focus:outline-none focus:ring active:bg-surface cursor-pointer"
+			@click="$store.state.toggleSidebar()"
 		>
 			<span class="sr-only">Open Sidebar</span>
-			<svg
-				class="size-3.5 rtl:rotate-180"
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="3"
-					d="M14 5l7 7m0 0l-7 7m7-7H3"
-				></path>
+			<svg class="feathericons scale-90">
+				<use href="/static/imgs/svg/feather-sprite.svg#menu"></use>
 			</svg>
 		</a>
-		<div class="fixed inset-0 bg-black bg-opacity-60 md:hidden z-10" x-show="open" @click="open = false"></div>
+		<div class="fixed inset-0 bg-black bg-opacity-60 md:hidden z-10" x-show="$store.state.sidebar" @click="$store.state.toggleSidebar()"></div>
 		<div class="flex flex-row h-full">
-			<div class="h-full absolute z-40 md:relative bg-surface-0" x-show="open">
+			<div class="h-full absolute z-40 md:relative bg-surface-0" x-show="$store.state.sidebar">
 				<div class="h-full w-[15rem] flex-none flex flex-col justify-between border-r border-primary shadow-lg">
 					<div class="px-4 py-6">
 						<span class="ml-auto mr-0 grid h-10 w-32 place-content-center rounded-lg bg-surface-1 hover:bg-surface-2 text-primary text-xs">
 							Logo
 						</span>
 						<ul class="mt-6 space-y-1">
-							// <li>
-							// 	<a href="/" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
-							// 		Home
-							// 	</a>
-							// </li>
-							// <li>
-							// 	<a href="/blogs" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
-							// 		Blogs
-							// 	</a>
-							// </li>
-							// <li>
-							// 	<a href="/work-archive" class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 text-primary">
-							// 		Work Archive
-							// 	</a>
-							// </li>
-							// <span class="w-full flex items-center py-4 px-6">
-							// 	<span class="w-full h-px bg-stone-500"></span>
-							// </span>
 							<li>
 								<a
-									@click="if (window.innerWidth < 768) open = false;"
+									x-data
 									hx-get="/templates/home"
 									hx-push-url="/"
 									hx-target="#content-zone"
-									class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 cursor-pointer"
+									class="block rounded-lg px-4 py-2 text-sm bg-surface-1 hover:bg-surface-2 cursor-pointer"
 								>
 									Home
 								</a>
 							</li>
 							<li>
 								<a
-									@click="if (window.innerWidth < 768) open = false;"
+									x-data
+									@click="$store.state.setActivePage('/blogs')"
 									hx-get="/templates/blogs"
 									hx-push-url="/blogs"
 									hx-target="#content-zone"
-									class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 cursor-pointer"
+									class="block rounded-lg px-4 py-2 text-sm bg-surface-1 hover:bg-surface-2 cursor-pointer"
 								>
 									Blogs
 								</a>
 							</li>
 							<li>
 								<a
-									@click="if (window.innerWidth < 768) open = false;"
+									x-data
+									@click="$store.state.setActivePage('/work-archive')"
 									hx-get="/templates/work-archive"
 									hx-push-url="/work-archive"
 									hx-trigger="click"
 									hx-target="#content-zone"
-									class="block rounded-lg px-4 py-2 text-sm font-medium bg-surface-1 hover:bg-surface-2 cursor-pointer"
+									class="block rounded-lg px-4 py-2 text-sm bg-surface-1 hover:bg-surface-2 cursor-pointer"
 								>
 									Work Archive
 								</a>
@@ -86,14 +59,15 @@ templ Sidebar() {
 						</ul>
 					</div>
 					<div class="flex items-center inset-x-0 bottom-0 border-t border-primary">
-						<div type="button" @click="openInfoModal = true" class="w-full h-full flex flex-row items-center hover:bg-surface-1 pointer-events-auto cursor-pointer">
+						<div class="w-full h-full flex flex-row items-center hover:bg-surface-1">
 							<p class="text-xs ml-4 my-0">
-								<strong class="block font-medium text-primary">Khanh Nguyen</strong>
-								<span class="text-secondary">fake@email.com </span>
+								<span class="block font-medium text-primary">Khanh Nguyen</span>
+								<span class="text-secondary">knguyen.66.work@email.com </span>
 							</p>
 						</div>
+						// <div class="flex flex-col h-full justify-center hover:bg-surface-1 pointer-events-auto cursor-pointer" @click="$store.darkMode.toggle()">
 						<div class="flex flex-col h-full justify-center hover:bg-surface-1 pointer-events-auto cursor-pointer">
-							<input type="checkbox" id="light-switch" class="sr-only"/>
+							<button id="light-switch" x-data @click="$store.state.toggleDarkMode()" class="sr-only"></button>
 							<label class="relative cursor-pointer p-3" for="light-switch">
 								<svg xmlns="http://www.w3.org/2000/svg" class="dark:hidden h-[26px] w-[26px] size-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
 									<path class="fill-slate-700" stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path>
@@ -107,23 +81,15 @@ templ Sidebar() {
 					</div>
 				</div>
 			</div>
-			<div class="w-9 hidden md:block" x-show="!open"></div>
+			<div class="w-9 hidden md:block" x-show="! $store.state.sidebar"></div>
 		</div>
+		// <script>
+		// 	document.addEventListener("htmx:beforeRequest", function(event) {
+		// 		console.log("Elt", event.detail.elt);
+		// 		console.log("xhr", event.detail.xhr);
+		// 		console.log("Request config", event.detail.requestConfig);
+		// 		// $store.state.setActivePage(window.location.pathname);
+		// 	});
+		// </script>
 	</div>
-	<script>
-		// dark & light mode
-		const lightSwitch = document.querySelector('#light-switch');
-		if (localStorage.getItem('dark-mode') === 'true') {
-			lightSwitch.checked = true;
-		}
-		lightSwitch.addEventListener('change', () => {
-			if (lightSwitch.checked) {
-				document.documentElement.classList.add('dark');
-				localStorage.setItem('dark-mode', true);
-			} else {
-				document.documentElement.classList.remove('dark');
-				localStorage.setItem('dark-mode', false);
-			}
-		});
-	</script>
 }

@@ -27,12 +27,12 @@ func _handleBlogArticle(slugName string) (templ.Component, error) {
 	if err != nil {
 		return nil, err
 	}
-	blogContent, _, err := utils.ParseMarkdownBlogWithMetadata(existedBlog.ContentFilename)
+	blogContent, _, err := utils.ParseMarkdownBlog(existedBlog.ContentFilename)
 	if err != nil {
 		return nil, err
 	}
 	return views.BlogArticle(existedBlog, blogTags, blogContent), nil
-} 
+}
 
 func HandleBlogArticlePage(w http.ResponseWriter, r *http.Request) error {
 	slugName := chi.URLParam(r, "articleSlug")

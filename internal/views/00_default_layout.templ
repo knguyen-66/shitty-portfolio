@@ -1,11 +1,19 @@
 package views
 
-import "shitty-portfolio/internal/views/base"
+import (
+	"os"
+	"shitty-portfolio/internal/views/base"
+)
 
-templ DEFAULT_LAYOUT(contents templ.Component, prod bool) {
-	@base.Index(prod) {
+func getProductionState() bool {
+	return os.Getenv("APP_PROD") == "true"
+}
+
+templ DEFAULT_LAYOUT(contents templ.Component) {
+	@base.Index(getProductionState()) {
 		<div class="flex flex-row relative h-screen overflow-hidden">
 			@base.Sidebar()
+			// @base.ContactModal()
 			<div id="content-zone" class="overflow-y-auto w-full px-10 py-7">
 				@contents
 			</div>

@@ -36,6 +36,7 @@ module.exports = {
 
         "obj-primary": "rgb(var(--obj-primary-color) / <alpha-value>)",
         "obj-secondary": "rgb(var(--obj-secondary-color) / <alpha-value>)",
+        "obj-tertiary": "rgb(var(--obj-tertiary-color) / <alpha-value>)",
         "obj-success": "rgb(var(--obj-success-color) / <alpha-value>)",
         "obj-warning": "rgb(var(--obj-warning-color) / <alpha-value>)",
         "obj-error": "rgb(var(--obj-error-color) / <alpha-value>)",
@@ -47,6 +48,7 @@ module.exports = {
 
         "obj-primary": "rgb(var(--obj-primary-color) / <alpha-value>)",
         "obj-secondary": "rgb(var(--obj-secondary-color) / <alpha-value>)",
+        "obj-tertiary": "rgb(var(--obj-tertiary-color) / <alpha-value>)",
         "obj-success": "rgb(var(--obj-success-color) / <alpha-value>)",
         "obj-warning": "rgb(var(--obj-warning-color) / <alpha-value>)",
         "obj-error": "rgb(var(--obj-error-color) / <alpha-value>)",
@@ -98,12 +100,13 @@ module.exports = {
           },
           ol: {
             listStyleType: 'decimal',
-            marginTop: '0.2rem',
+            marginTop: '0.5rem',
             marginBottom: '0.5rem',
           },
           li: {
+            marginTop: '0.2rem',
             marginLeft: '1rem',
-            paddingLeft: '0.7rem',
+            paddingLeft: '0.75rem',
           },
           figure: {
             width: '100%',
@@ -140,6 +143,8 @@ module.exports = {
             color: 'theme("textColor.primary")',
           },
           pre: {
+            marginTop: "1rem",
+            marginBottom: "1.5rem",
             overflowX: 'auto',
           },
           code: {
@@ -147,10 +152,6 @@ module.exports = {
             borderColor: 'theme("borderColor.primary")',
             borderWidth: '0.2rem',
             borderRadius: '0.25rem',
-            marginLeft: "0.25rem",
-            marginRight: "0.25rem",
-            marginTop: "0.5rem",
-            marginBottom: "0.5rem",
             padding: '0.25rem',
             fontSize: '0.9rem',
             lineHeight: '1.4',

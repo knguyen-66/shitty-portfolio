@@ -23,8 +23,7 @@ prepare:
 
 .PHONY: dev
 dev:
-	make templ-generate
-	air
+	make tailwind-build && make templ-generate && air
 
 .PHONY: build-prod
 build-prod:

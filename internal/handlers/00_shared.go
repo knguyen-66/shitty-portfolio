@@ -3,8 +3,6 @@ package handlers
 import (
 	"log/slog"
 	"net/http"
-	"os"
-	"strconv"
 
 	"shitty-portfolio/internal/views"
 
@@ -26,9 +24,5 @@ func Render(w http.ResponseWriter, r *http.Request, t templ.Component) error {
 }
 
 func RenderWithDefaultLayout(w http.ResponseWriter, r *http.Request, t templ.Component) error {
-	prod, err := strconv.ParseBool(os.Getenv("APP_PROD"))
-	if err != nil {
-		slog.Error("app error", "err", err)
-	}
-	return views.DEFAULT_LAYOUT(t, prod).Render(r.Context(), w)
+	return views.DEFAULT_LAYOUT(t).Render(r.Context(), w)
 }
