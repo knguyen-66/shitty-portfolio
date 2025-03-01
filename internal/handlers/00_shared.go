@@ -9,11 +9,20 @@ import (
 	"github.com/a-h/templ"
 )
 
-type HTTPHandler func(w http.ResponseWriter, r *http.Request) error
+type HTTPHandler interface {
+	RenderPage(w http.ResponseWriter, r *http.Request) error
+	RenderTemplate(w http.ResponseWriter, r *http.Request) error
+}
 
-func Make(h HTTPHandler) http.HandlerFunc {
+func Make(h HTTPHandler, isTemplate bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if err := h(w, r); err != nil {
+		var err error
+		if isTemplate {
+			err = h.RenderTemplate(w, r)
+		} else {
+			err = h.RenderPage(w, r)
+		}
+		if err != nil {
 			slog.Error("HTTP handler error", "err", err, "path", r.URL.Path)
 		}
 	}
