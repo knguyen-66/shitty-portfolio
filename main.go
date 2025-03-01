@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"errors"
-	"flag"
 	"log/slog"
 	"net/http"
 	"os"
@@ -14,27 +13,18 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 
-	// "github.com/joho/godotenv"
+	"github.com/joho/godotenv"
 
 	"shitty-portfolio/data"
 	"shitty-portfolio/internal/routes"
 )
 
 func main() {
-	os.Setenv("APP_PORT", "3500")
-	flagProd := flag.Bool("prod", false, "production state, default: false")
-	flag.Parse()
-	if *flagProd {
-		os.Setenv("APP_PROD", "true")
-	} else {
-		os.Setenv("APP_PROD", "false")
+	if err := godotenv.Load(".env"); err != nil {
+		slog.Error("environment loading error:", "err", err)
 	}
 
-	// if err := godotenv.Load(envFilename); err != nil {
-	// 	slog.Error("environment loading error:", "err", err)
-	// }
-
-	err := data.InitDatabase()
+	err := data.InitDatabase(os.Getenv("DB_DRIVER"), os.Getenv("DB_CONNECTION_STRING"))
 	if err != nil {
 		slog.Error("database initialization error:", "err", err)
 		os.Exit(1)
@@ -59,7 +49,7 @@ func main() {
 	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
 
 	go func() {
-		slog.Info("Server started at", "listenAddress", "localhost"+server.Addr, "prod", *flagProd)
+		slog.Info("Server started at", "listenAddress", "localhost"+server.Addr, "prod", os.Getenv("APP_PRODUCTION"))
 		err := server.ListenAndServe()
 
 		if errors.Is(err, http.ErrServerClosed) {

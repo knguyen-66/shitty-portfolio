@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 .PHONY: tailwind-watch
 tailwind-watch:
 	rm -f ./internal/static/css/styles.css
@@ -18,8 +20,13 @@ templ-watch:
 
 .PHONY: prepare
 prepare:
-	./scripts/dev-install-packages.sh
+	if [[ ! -e .env ]]; then\
+		cp .env.example .env;\
+	fi
+	./.scripts/dev-install-packages.sh
 	go mod tidy
+	./.scripts/goose.sh up
+	sqlc generate
 
 .PHONY: dev
 dev:

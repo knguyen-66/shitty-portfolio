@@ -7,8 +7,8 @@ import (
 
 var DB *sql.DB
 
-func InitDatabase() error {
-	db, err := sql.Open("sqlite3", "./app.db")
+func InitDatabase(driverName string, connectionString string) error {
+	db, err := sql.Open(driverName, connectionString)
 	if err != nil {
 		return err
 	}

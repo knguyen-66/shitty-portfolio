@@ -11,3 +11,12 @@ A place to:
 Stack: Golang, HTMX, Templ, TailwindCSS
 
 !["Approved by HTMX"](/internal/static/imgs/htmx-banner.png)
+
+## Production build
+
+- Run the following commands:
+
+    ```bash
+    make build-prod
+    make prod
+    ```
