@@ -6,6 +6,7 @@ import (
 )
 
 func getProductionState() bool {
+	// fmt.Println("APP_PRODUCTION: ", os.Getenv("APP_PRODUCTION"))
 	return os.Getenv("APP_PRODUCTION") == "true"
 }
 

@@ -5,13 +5,15 @@ import (
 	"fmt"
 	"net/http"
 	"shitty-portfolio/data"
-	"shitty-portfolio/internal/handlers"
+	"shitty-portfolio/internal/handler"
 	"shitty-portfolio/internal/views"
 
 	"github.com/a-h/templ"
 )
 
-type Handler struct{}
+type Handler struct {
+	*handler.BaseHTTPHandler
+}
 
 func handle() (templ.Component, error) {
 	queries := data.New(data.DB)
@@ -36,7 +38,7 @@ func (h *Handler) RenderPage(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	return handlers.RenderWithDefaultLayout(w, r, viewTemplate)
+	return handler.RenderWithDefaultLayout(w, r, viewTemplate)
 }
 
 func (h *Handler) RenderTemplate(w http.ResponseWriter, r *http.Request) error {
@@ -44,5 +46,5 @@ func (h *Handler) RenderTemplate(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	return handlers.Render(w, r, viewTemplate)
+	return handler.Render(w, r, viewTemplate)
 }

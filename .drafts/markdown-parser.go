@@ -8,10 +8,13 @@ import (
 	"os"
 	"reflect"
 	"regexp"
+
 	// "shitty-portfolio/data"
 	// "shitty-portfolio/internal/utils"
-	figure "github.com/mangoumbrella/goldmark-figure"
 	"time"
+
+	figure "github.com/mangoumbrella/goldmark-figure"
+
 	// _ "github.com/mattn/go-sqlite3"
 	"github.com/yuin/goldmark"
 	meta "github.com/yuin/goldmark-meta"
@@ -31,7 +34,7 @@ func getKey(m map[string]interface{}, key string) string {
 }
 
 func main() {
-	source, err := os.ReadFile("../data/blogs/01-building-a-kinda-high-performance-chat-application-with-python-and-golang.md")
+	source, err := os.ReadFile("./data/blogs/01-building-a-kinda-high-performance-chat-application-with-python-and-golang.md")
 	if err != nil {
 		panic(err)
 	}
@@ -50,7 +53,8 @@ func main() {
 	fmt.Println("Date:", date)
 	fmt.Println("Tags:", metadata["Tags"], reflect.TypeOf(metadata["Tags"]))
 	fmt.Println("----------")
-	fmt.Println(blogStr)
+	_ = blogStr
+	// fmt.Println(blogStr)
 
 	// db, err := sql.Open("sqlite3", "../app.db")
 	// defer db.Close()

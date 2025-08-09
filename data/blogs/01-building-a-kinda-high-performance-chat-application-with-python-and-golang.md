@@ -57,7 +57,7 @@ By the way, I also recommend this [Uber/Lyft system design overview](https://www
 
 #### Application features
 
-As I was focusing a lot on the technical aspect, I've decided to keep the feature list short. For this app, I wanted it to be a group-based chat app, with options to:
+As I was focusing a lot on the technical aspect, I've decided to keep the feature list short. Functionally, I wanted it to be a group-based chat app, with options to:
 
 - Create & login to personal account
 - Search for users / groups
@@ -132,7 +132,9 @@ db-scylla-3:
 
 I also add a Postgres instance for general user information and app configuration. It's a good choice for a relational database, I already have some experience with it, and it's safer to keep ACID properties for the user data.
 
-For the **backend service**, I initially wanted to use Python for both HTTP and Websocket services, but as the project going on, I realized it's not really performant for the Websocket part. So I switched to Golang for the Websocket service, and keep Python for the HTTP service.
+For the **backend service**, I initially wanted to use Python for both HTTP and Websocket services, but as the project going on, I realized it's not really performant for the Websocket part. So I switched to Golang for the Websocket service, and keep Python's FastAPI library for the HTTP service 
+
+> Apparently, even with "fast" on it, Python is still not that plausible for high performace tasks, as you going to see later
 
 #### Data schema
 

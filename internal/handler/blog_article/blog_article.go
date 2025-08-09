@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"shitty-portfolio/data"
-	"shitty-portfolio/internal/handlers"
+	"shitty-portfolio/internal/handler"
 	"shitty-portfolio/internal/utils"
 	"shitty-portfolio/internal/views"
 
@@ -14,6 +14,7 @@ import (
 )
 
 type Handler struct {
+	*handler.BaseHTTPHandler
 	SlugName string
 }
 
@@ -45,7 +46,7 @@ func (h *Handler) RenderPage(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	return handlers.RenderWithDefaultLayout(w, r, viewTemplate)
+	return handler.RenderWithDefaultLayout(w, r, viewTemplate)
 }
 
 func (h *Handler) RenderTemplate(w http.ResponseWriter, r *http.Request) error {
@@ -54,5 +55,5 @@ func (h *Handler) RenderTemplate(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	return handlers.Render(w, r, viewTemplate)
+	return handler.Render(w, r, viewTemplate)
 }

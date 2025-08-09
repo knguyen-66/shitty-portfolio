@@ -1,0 +1,13 @@
+package views
+
+templ NotFound(err string) {
+	<div class="h-full container flex flex-col align-middle justify-center text-center">
+		<h1 class="text-3xl font-bold">404 Not Found</h1>
+		if err != "" {
+			<p class="text-red-500">Verbose: { err }</p>
+		} else {
+			<p>Sorry, the page you were looking for could not be found.</p>
+		}
+		<p class="hover:underline"><a href="/">&lt;------------- Check out other things on here :D</a></p>
+	</div>
+}

@@ -1,0 +1,21 @@
+package base
+
+templ ContactModal(xShow string) {
+	<div x-cloak x-show={ xShow } @click.self={ assign(xShow, false) } class="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-4 pb-8 backdrop-blur-sm sm:items-center lg:p-8" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+		<div></div>
+		<div x-show={ xShow } class="flex max-w-xl flex-col sm:flex-row gap-4 overflow-hidden rounded-md border border-primary bg-surface-0">
+			<div class="p-7">
+				<img
+					loading="lazy"
+					alt="Profile picture"
+					src="/static/imgs/profile.jpg"
+					class="aspect-square h-full w-full object-cover rounded-full"
+				/>
+			</div>
+			<div class="flex flex-col items-end bg-surface-1 py-7 pl-0 pr-10">
+				<h3 class="text-lg font-bold whitespace-nowrap">Khanh Nguyen</h3>
+				<a>knguyen.66.work@email.com</a>
+			</div>
+		</div>
+	</div>
+}

@@ -2,6 +2,9 @@ package data
 
 import (
 	"database/sql"
+	"os"
+	"path/filepath"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -16,6 +19,16 @@ func InitDatabase(driverName string, connectionString string) error {
 	return nil
 }
 
+func InitDatabaseDefault() error {
+	dir, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	return InitDatabase("sqlite3", filepath.Join(dir, "data/app.db"))
+}
+
 func CloseDatabase() {
-	DB.Close()
+	if DB != nil {
+		DB.Close()
+	}
 }

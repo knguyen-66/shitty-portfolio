@@ -1,6 +1,9 @@
 -- name: SelectBlog :one
 SELECT * FROM blog WHERE id = ? LIMIT 1;
 
+-- name: SelectBlogByContentFilename :one
+SELECT * FROM blog WHERE content_filename = ? LIMIT 1;
+
 -- name: SelectBlogBySlug :one
 SELECT * FROM blog WHERE slug = ? LIMIT 1;
 
